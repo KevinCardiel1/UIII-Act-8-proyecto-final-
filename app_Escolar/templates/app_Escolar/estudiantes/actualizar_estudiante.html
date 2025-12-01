@@ -1,0 +1,55 @@
+{% extends 'app_Escolar/base.html' %}
+
+{% block title %}Actualizar Estudiante - Sistema de Gestión Escolar{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="mb-4"><i class="fas fa-user-edit me-2"></i>Actualizar Estudiante</h2>
+            <form method="POST" class="needs-validation" novalidate>
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" value="{{ estudiante.nombre }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="apellido" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" id="apellido" name="apellido" value="{{ estudiante.apellido }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="fecha_nacimiento" class="form-label">Fecha de Nacimiento</label>
+                    <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" value="{{ estudiante.fecha_nacimiento|date:'Y-m-d' }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="genero" class="form-label">Género</label>
+                    <select class="form-select" id="genero" name="genero" required>
+                        <option value="M" {% if estudiante.genero == 'M' %}selected{% endif %}>Masculino</option>
+                        <option value="F" {% if estudiante.genero == 'F' %}selected{% endif %}>Femenino</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="direccion" class="form-label">Dirección</label>
+                    <input type="text" class="form-control" id="direccion" name="direccion" value="{{ estudiante.direccion }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="telefono" class="form-label">Teléfono</label>
+                    <input type="tel" class="form-control" id="telefono" name="telefono" value="{{ estudiante.telefono }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" value="{{ estudiante.email }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="num_matricula" class="form-label">Número de Matrícula</label>
+                    <input type="text" class="form-control" id="num_matricula" name="num_matricula" value="{{ estudiante.num_matricula }}" required>
+                </div>
+                <div class="mb-3">
+                    <a href="{% url 'ver_estudiantes' %}" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-warning">Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

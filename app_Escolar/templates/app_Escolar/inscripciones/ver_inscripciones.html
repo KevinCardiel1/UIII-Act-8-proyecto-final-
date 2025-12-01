@@ -1,0 +1,43 @@
+{% extends 'app_Escolar/base.html' %}
+{% block title %}Ver Inscripciones - Sistema de Gestión Escolar{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2><i class="fas fa-clipboard me-2"></i>Inscripciones</h2>
+        <a href="{% url 'agregar_inscripcion' %}" class="btn btn-success"><i class="fas fa-plus me-1"></i>Agregar Inscripción</a>
+    </div>
+    {% if inscripciones %}
+    <div class="table-responsive">
+        <table class="table table-hover table-striped table-sm">
+            <thead class="table-dark">
+                <tr>
+                    <th>Estudiante</th>
+                    <th>Curso</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                    <th>Nota Final</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for inscripcion in inscripciones %}
+                <tr>
+                    <td>{{ inscripcion.estudiante.nombre }} {{ inscripcion.estudiante.apellido }}</td>
+                    <td>{{ inscripcion.curso.nombre_curso }}</td>
+                    <td>{{ inscripcion.fecha_inscripcion|date:"d/m/Y" }}</td>
+                    <td><span class="badge bg-info">{{ inscripcion.estado_inscripcion }}</span></td>
+                    <td>{{ inscripcion.nota_final|default:"Pendiente" }}</td>
+                    <td>
+                        <a href="{% url 'actualizar_inscripcion' inscripcion.id %}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                        <a href="{% url 'borrar_inscripcion' inscripcion.id %}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="alert alert-info">No hay inscripciones registradas. <a href="{% url 'agregar_inscripcion' %}">Crear una nueva</a></div>
+    {% endif %}
+</div>
+{% endblock %}

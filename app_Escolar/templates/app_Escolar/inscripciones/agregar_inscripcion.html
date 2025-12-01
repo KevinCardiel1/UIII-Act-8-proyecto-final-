@@ -1,0 +1,45 @@
+{% extends 'app_Escolar/base.html' %}
+{% block title %}Agregar Inscripción - Sistema de Gestión Escolar{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="mb-4"><i class="fas fa-clipboard me-2"></i>Agregar Nueva Inscripción</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label">Estudiante</label>
+                    <select class="form-select" name="estudiante" required>
+                        <option value="">Seleccionar...</option>
+                        {% for est in estudiantes %}
+                        <option value="{{ est.id }}">{{ est.nombre }} {{ est.apellido }} ({{ est.num_matricula }})</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Curso</label>
+                    <select class="form-select" name="curso" required>
+                        <option value="">Seleccionar...</option>
+                        {% for cur in cursos %}
+                        <option value="{{ cur.id }}">{{ cur.nombre_curso }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Estado</label>
+                    <select class="form-select" name="estado_inscripcion">
+                        <option value="Activa">Activa</option>
+                        <option value="Completada">Completada</option>
+                        <option value="Cancelada">Cancelada</option>
+                        <option value="Suspendida">Suspendida</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <a href="{% url 'ver_inscripciones' %}" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

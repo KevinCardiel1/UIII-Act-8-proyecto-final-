@@ -1,0 +1,41 @@
+{% extends 'app_Escolar/base.html' %}
+{% block title %}Actualizar Materia - Sistema de Gestión Escolar{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="mb-4"><i class="fas fa-book me-2"></i>Actualizar Materia</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label">Nombre de Materia</label>
+                    <input type="text" class="form-control" name="nombre_materia" value="{{ materia.nombre_materia }}" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Descripción</label>
+                    <textarea class="form-control" name="descripcion" rows="4" required>{{ materia.descripcion }}</textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Nivel Académico</label>
+                    <input type="text" class="form-control" name="nivel_academico" value="{{ materia.nivel_academico }}" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">¿Es Obligatoria?</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="es_obligatoria" id="es_obligatoria" {% if materia.es_obligatoria %}checked{% endif %}>
+                        <label class="form-check-label" for="es_obligatoria">Sí, es obligatoria</label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Horas Semanales</label>
+                    <input type="number" class="form-control" name="horas_semanales" value="{{ materia.horas_semanales }}" required>
+                </div>
+                <div class="mb-3">
+                    <a href="{% url 'ver_materias' %}" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-warning">Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

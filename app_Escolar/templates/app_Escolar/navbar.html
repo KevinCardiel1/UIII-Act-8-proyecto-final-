@@ -1,0 +1,83 @@
+<!-- app_Escolar/templates/navbar.html -->
+<nav class="navbar navbar-expand-lg navbar-escolar">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'inicio_escolar' %}">
+            <i class="fas fa-school me-2"></i>Sistema de Gestión Escolar
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'inicio_escolar' %}"><i class="fas fa-home me-1"></i>Inicio</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-users me-1"></i>Estudiantes
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'agregar_estudiante' %}">Agregar Estudiante</a></li>
+                        <li><a class="dropdown-item" href="{% url 'ver_estudiantes' %}">Ver Estudiantes</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-chalkboard-user me-1"></i>Profesores
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'agregar_profesor' %}">Agregar Profesor</a></li>
+                        <li><a class="dropdown-item" href="{% url 'ver_profesores' %}">Ver Profesores</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-book me-1"></i>Materias
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'agregar_materia' %}">Agregar Materia</a></li>
+                        <li><a class="dropdown-item" href="{% url 'ver_materias' %}">Ver Materias</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-graduation-cap me-1"></i>Cursos
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'agregar_curso' %}">Agregar Curso</a></li>
+                        <li><a class="dropdown-item" href="{% url 'ver_cursos' %}">Ver Cursos</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-file-signature me-1"></i>Inscripciones
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'agregar_inscripcion' %}">Agregar Inscripción</a></li>
+                        <li><a class="dropdown-item" href="{% url 'ver_inscripciones' %}">Ver Inscripciones</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-user-check me-1"></i>Asistencias
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'agregar_asistencia' %}">Agregar Asistencia</a></li>
+                        <li><a class="dropdown-item" href="{% url 'ver_asistencias' %}">Ver Asistencias</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-clipboard-list me-1"></i>Calificaciones
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'agregar_calificacion' %}">Agregar Calificación</a></li>
+                        <li><a class="dropdown-item" href="{% url 'ver_calificaciones' %}">Ver Calificaciones</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,50 @@
+{% extends 'app_Escolar/base.html' %}
+{% block title %}Agregar Profesor - Sistema de Gestión Escolar{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="mb-4"><i class="fas fa-user-plus me-2"></i>Agregar Nuevo Profesor</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" class="form-control" name="nombre" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Apellido</label>
+                    <input type="text" class="form-control" name="apellido" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Teléfono</label>
+                    <input type="tel" class="form-control" name="telefono" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Especialidad</label>
+                    <input type="text" class="form-control" name="especialidad" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Fecha de Contratación</label>
+                    <input type="date" class="form-control" name="fecha_contratacion" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Salario</label>
+                    <input type="number" step="0.01" class="form-control" name="salario" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">DNI</label>
+                    <input type="text" class="form-control" name="dni" required>
+                </div>
+                <div class="mb-3">
+                    <a href="{% url 'ver_profesores' %}" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

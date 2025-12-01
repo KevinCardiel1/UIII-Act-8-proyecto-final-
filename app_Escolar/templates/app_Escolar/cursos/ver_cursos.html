@@ -1,0 +1,45 @@
+{% extends 'app_Escolar/base.html' %}
+{% block title %}Ver Cursos - Sistema de Gestión Escolar{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2><i class="fas fa-graduation-cap me-2"></i>Cursos</h2>
+        <a href="{% url 'agregar_curso' %}" class="btn btn-success"><i class="fas fa-plus me-1"></i>Agregar Curso</a>
+    </div>
+    {% if cursos %}
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Profesor</th>
+                    <th>Nivel</th>
+                    <th>Aula</th>
+                    <th>Créditos</th>
+                    <th>Costo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for curso in cursos %}
+                <tr>
+                    <td>{{ curso.nombre_curso }}</td>
+                    <td>{{ curso.profesor.nombre }} {{ curso.profesor.apellido }}</td>
+                    <td>{{ curso.nivel_educativo }}</td>
+                    <td>{{ curso.aula }}</td>
+                    <td>{{ curso.creditos }}</td>
+                    <td>${{ curso.costo_curso }}</td>
+                    <td>
+                        <a href="{% url 'actualizar_curso' curso.id %}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                        <a href="{% url 'borrar_curso' curso.id %}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="alert alert-info">No hay cursos registrados. <a href="{% url 'agregar_curso' %}">Crear uno nuevo</a></div>
+    {% endif %}
+</div>
+{% endblock %}

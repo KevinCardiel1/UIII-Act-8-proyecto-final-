@@ -1,0 +1,45 @@
+{% extends 'app_Escolar/base.html' %}
+{% block title %}Ver Calificaciones - Sistema de Gestión Escolar{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2><i class="fas fa-star me-2"></i>Calificaciones</h2>
+        <a href="{% url 'agregar_calificacion' %}" class="btn btn-success"><i class="fas fa-plus me-1"></i>Agregar Calificación</a>
+    </div>
+    {% if calificaciones %}
+    <div class="table-responsive">
+        <table class="table table-hover table-striped table-sm">
+            <thead class="table-dark">
+                <tr>
+                    <th>Estudiante</th>
+                    <th>Curso</th>
+                    <th>Tipo Evaluación</th>
+                    <th>Fecha</th>
+                    <th>Puntaje</th>
+                    <th>Ponderación</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for calificacion in calificaciones %}
+                <tr>
+                    <td>{{ calificacion.inscripcion.estudiante.nombre }} {{ calificacion.inscripcion.estudiante.apellido }}</td>
+                    <td>{{ calificacion.inscripcion.curso.nombre_curso }}</td>
+                    <td>{{ calificacion.tipo_evaluacion }}</td>
+                    <td>{{ calificacion.fecha_evaluacion|date:"d/m/Y" }}</td>
+                    <td>{{ calificacion.puntaje }}</td>
+                    <td>{{ calificacion.ponderacion }}</td>
+                    <td>
+                        <a href="{% url 'actualizar_calificacion' calificacion.id %}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                        <a href="{% url 'borrar_calificacion' calificacion.id %}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="alert alert-info">No hay calificaciones registradas. <a href="{% url 'agregar_calificacion' %}">Crear una nueva</a></div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'app_Escolar/base.html' %}
+{% block title %}Agregar Asistencia - Sistema de Gestión Escolar{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="mb-4"><i class="fas fa-calendar-check me-2"></i>Registrar Asistencia</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label">Estudiante</label>
+                    <select class="form-select" name="estudiante" required>
+                        <option value="">Seleccionar...</option>
+                        {% for est in estudiantes %}
+                        <option value="{{ est.id }}">{{ est.nombre }} {{ est.apellido }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Curso</label>
+                    <select class="form-select" name="curso" required>
+                        <option value="">Seleccionar...</option>
+                        {% for cur in cursos %}
+                        <option value="{{ cur.id }}">{{ cur.nombre_curso }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Fecha de Clase</label>
+                    <input type="date" class="form-control" name="fecha_clase" required>
+                </div>
+                <div class="mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="presente" id="presente" checked>
+                        <label class="form-check-label" for="presente">Presente</label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Justificación (si aplica)</label>
+                    <textarea class="form-control" name="justificacion" rows="2"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Comentarios</label>
+                    <textarea class="form-control" name="comentarios" rows="2"></textarea>
+                </div>
+                <div class="mb-3">
+                    <a href="{% url 'ver_asistencias' %}" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
